@@ -1,4 +1,4 @@
-# AgriBot 🌱🤖
+# AgriBot 
 
 AgriBot is a Raspberry Pi based agricultural robot I worked on to automate a few common farming tasks. The robot is designed to cut unwanted grass, spray water when the soil needs it, and support automatic seeding.
 
