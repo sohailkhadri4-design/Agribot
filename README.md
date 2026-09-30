@@ -1,75 +1,106 @@
 # AgriBot 🌱🤖
 
-A Raspberry Pi based agricultural robot designed to automate selected farm operations including unwanted grass cutting, water spraying based on soil conditions, and automatic seed placement.
+AgriBot is a Raspberry Pi based agricultural robot I worked on to automate a few common farming tasks. The robot is designed to cut unwanted grass, spray water when the soil needs it, and support automatic seeding.
 
-## Project Overview
+## What It Does
 
-AgriBot combines environmental sensing, motor control, and Bluetooth communication on a Raspberry Pi to support basic agricultural automation.
-
-### Core functions
-
-- 🌱 **Unwanted grass cutting** using DC motors and an L298 motor driver.
-- 💧 **Water spraying** when soil moisture indicates that watering is needed.
-- 🌾 **Automatic seeding** to place seeds as the robot moves through the field.
-- 📡 **Bluetooth communication** for wireless robot control and communication.
-- 🌡️ **Environmental monitoring** using temperature and humidity sensors.
-- 💧 **Soil monitoring** using a soil moisture sensor.
+- Cuts unwanted grass using a motor-driven cutting mechanism.
+- Monitors soil moisture and sprays water when required.
+- Measures temperature and humidity.
+- Supports automatic seed dispensing.
+- Uses Bluetooth for wireless communication.
+- Uses an L298 motor driver to control the DC motors.
 
 ## Hardware
 
-| Component | Role |
+| Component | Purpose |
 |---|---|
 | Raspberry Pi | Main controller |
-| Soil moisture sensor | Monitors soil moisture |
-| Humidity sensor | Measures ambient humidity |
-| Temperature sensor | Measures temperature |
-| DC motors | Robot movement / mechanical actuation |
-| L298 motor driver | Drives the DC motors |
+| Soil Moisture Sensor | Monitors soil moisture |
+| Temperature Sensor | Measures temperature |
+| Humidity Sensor | Measures humidity |
+| L298 Motor Driver | Controls DC motors |
+| DC Motors | Robot movement and mechanical operation |
 | Bluetooth | Wireless communication |
 
-## System Architecture
+## How It Works
+
+The Raspberry Pi handles the sensor readings, motor control, Bluetooth communication, and the logic for the different agricultural functions.
+
+The soil moisture sensor is used to check the condition of the soil. When watering is required, the water spraying system can be activated.
+
+The DC motors are controlled through the L298 motor driver. The robot also has separate mechanisms for grass cutting and seed dispensing.
+
+Bluetooth is used for wireless communication with the robot.
+
+## System Flow
 
 ```text
-                 +----------------------+
-                 |      Raspberry Pi     |
-                 |   Main Controller     |
-                 +----------+-----------+
-                            |
-          +-----------------+------------------+
-          |                 |                  |
-          v                 v                  v
-  Soil Moisture       Temperature &       Bluetooth
-     Sensor             Humidity           Module
-          |              Sensors               |
-          +----------------+------------------+
-                           |
-                           v
-                    Decision / Control
-                           |
-              +------------+------------+
-              |                         |
-              v                         v
-        L298 Motor Driver        Agricultural Actions
-              |                  - Grass cutting
-              v                  - Water spraying
-          DC Motors              - Automatic seeding
+                    +----------------------+
+                    |     Raspberry Pi     |
+                    |    Main Controller   |
+                    +----------+-----------+
+                               |
+             +-----------------+------------------+
+             |                 |                  |
+             v                 v                  v
+       Soil Moisture     Temperature &       Bluetooth
+          Sensor           Humidity
+             |               Sensors
+             +-----------------+------------------+
+                               |
+                               v
+                         Control Logic
+                               |
+              +----------------+----------------+
+              |                |                |
+              v                v                v
+         Grass Cutting    Water Spraying   Automatic Seeding
+              |
+              v
+        L298 Motor Driver
+              |
+              v
+          DC Motors
 ```
 
-## Operating Concept
+## Main Functions
 
-1. The Raspberry Pi reads the soil moisture and environmental sensor data.
-2. Soil moisture information is used to determine when watering is required.
-3. The motor driver controls the DC motors used by the robot.
-4. The robot can perform grass-cutting operations.
-5. The irrigation system sprays water when the soil condition requires it.
-6. The seeding mechanism supports automatic seed placement.
-7. Bluetooth provides wireless communication with the robot.
+### Grass Cutting
+
+The robot uses a motor-driven cutting mechanism to remove unwanted grass while operating in the field.
+
+### Water Spraying
+
+Soil moisture is monitored continuously during operation. When the soil becomes too dry, the watering mechanism can be activated.
+
+### Automatic Seeding
+
+The robot includes a seed-dispensing mechanism that is intended to place seeds as the robot moves.
+
+### Environmental Monitoring
+
+Temperature and humidity sensors are used to collect environmental readings during operation.
+
+### Bluetooth Communication
+
+Bluetooth provides wireless communication with the Raspberry Pi and allows the robot to be operated without a direct wired connection.
 
 ## Software
 
-The Raspberry Pi is the central controller. The software should be organized around sensor acquisition, decision logic, motor control, agricultural actions, and Bluetooth communication.
+The Raspberry Pi is responsible for:
 
-Suggested structure:
+- Reading the sensors
+- Monitoring soil moisture
+- Controlling the DC motors
+- Controlling the water spraying system
+- Handling the seeding mechanism
+- Managing Bluetooth communication
+- Coordinating the overall robot operation
+
+## Project Structure
+
+The current repository is organized so that the implementation can be expanded as the project develops.
 
 ```text
 Agribot/
@@ -82,27 +113,31 @@ Agribot/
 ├── hardware/
 ├── docs/
 ├── images/
-└── tests/
+├── tests/
+└── .gitignore
 ```
 
-## Safety and Testing
+## Testing
 
-Before operating the robot, test each actuator independently and verify:
+I tested the main hardware sections individually before integrating them into the complete system.
 
-- Motor direction and stop control.
-- L298 connections and power supply.
-- Sensor readings under dry and moist soil conditions.
-- Water spraying trigger logic.
-- Bluetooth communication range and command handling.
-- Seed dispensing mechanism.
-- Emergency stop / safe motor shutdown behavior.
+The testing focused on:
 
-> **Implementation note:** This repository currently documents the system architecture and project requirements. Firmware/software implementation should be added from the actual project source rather than being fabricated.
+- Soil moisture sensor readings
+- Temperature and humidity readings
+- DC motor operation
+- L298 motor control
+- Bluetooth communication
+- Water spraying
+- Grass-cutting mechanism
+- Seed dispensing
 
-## Skills Demonstrated
+## Technologies Used
 
-**Raspberry Pi · Python · GPIO · Sensors · DC Motor Control · L298 · Bluetooth · Robotics · Agricultural Automation · Embedded Systems**
+**Raspberry Pi · Python · GPIO · Sensors · DC Motors · L298 · Bluetooth · Robotics · Agricultural Automation**
 
-## Project Goals
+## What I Learned
 
-The project demonstrates how a Raspberry Pi can integrate sensing, wireless communication, motor control, and automation into a practical agricultural robotics platform.
+Working on AgriBot gave me hands-on experience with Raspberry Pi GPIO, sensor integration, motor drivers, DC motor control, Bluetooth communication, and integrating multiple hardware modules into one robotic system.
+
+The project also involved testing individual components first and then bringing them together into a working agricultural automation system.
